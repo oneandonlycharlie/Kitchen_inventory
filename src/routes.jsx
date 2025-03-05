@@ -3,6 +3,7 @@ import App from "./App";
 import Home from "./compoments/home";
 import Category from "./compoments/categories";
 import Reciepe from "./compoments/reciepe";
+import Ingredient from "./compoments/ingredient";
 
 const router = createBrowserRouter([
     {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
             {path:"/reciepes", element: <Category type={"reciepe"}/>},
             {path:"/reciepe/:title", element: <Reciepe/>},
             {path:"/ingredients", element: <Category type={"ingredient"}/>},
-            {path:"/ingredient/:keyword", element: <Category type={"ingredient"}/>}
+            {path:"/ingredient/:name", element: <Ingredient/>}
         ]
     }
 ])
