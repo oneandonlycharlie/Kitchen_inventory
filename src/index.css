@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "LogoFont";
+  src: url("../public/fonts/Think\ Memories.otf")
+}
+
+@font-face {
+  font-family: "Title";
+  src: url("../public/fonts/Bilgie\ Personal\ Use\ Only.ttf");
+}
+
+@font-face {
+  font-family: "Quote";
+  src:url("../public/fonts/Retro\ Floral.otf");
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --background-primary:#f5f2ed;
+  --background-secondary:#e3d9cc;
+  --font-dark:#222121;
+  --font-light:#c09667;
+
+  background-color: var(--background-primary);
+  color: var(--font-dark);
+
+  ul, ol {
+  list-style: none;   /* 去除项目符号（列表项的标记） */
+  padding: 0;         /* 去除列表的内边距 */
+  margin: 0;          /* 去除列表的外边距 */
+  }
+  ul a {
+    text-decoration: none;
+    color: var(--font-dark);
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
