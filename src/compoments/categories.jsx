@@ -1,36 +1,35 @@
 import "../styles/categories.css"
 import { Link, useParams } from "react-router-dom"
-function CategoriesAll({category="Category name"}){
-    const title = category.toUpperCase() + "S"
+function Category({type}){
+    const title = type.toUpperCase() + "S"
     const {keyword} = useParams() // get keyword from user choice to filter items
     console.log(keyword)
     return (
         <>
             <h1>ALL {title}</h1>
             <ul className="list">
-                <li><Item category={category} keyword={"Chinese"}/></li>
-                <li><Item category={category}/></li>
-                <li><Item category={category}/></li>
-                <li><Item category={category}/></li>
-                <li><Item category={category}/></li>
+                <li><Item type={type} keyword={keyword? keyword:type}/></li>
+                <li><Item type={type}/></li>
+                <li><Item type={type}/></li>
+                <li><Item type={type}/></li>
+                <li><Item type={type}/></li>
             </ul>
         </>
     )
 }
 
 
-function Item({category, keyword, src="/imgs/dish.svg"}){
-
+function Item({type, keyword="no known", src="/imgs/dish.svg"}){
+    // insert child component depending on type and keyword
+    console.log(type)
     return(
         <div className="card">
-            <span><Link to={`/receipes/${keyword}`}>{keyword? keyword:category}</Link></span>
+            <span><Link to={`/${type}/${keyword}`}>{keyword}</Link></span>
             <img src={src} alt="" />
         </div>
     )
 }
 
-function NewCuisine(){
 
-}
 
-export default CategoriesAll
+export default Category
