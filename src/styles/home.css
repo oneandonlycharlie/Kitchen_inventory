@@ -1,0 +1,30 @@
+.home {
+    height: 100%;
+    .img-container {
+    width:100%;
+    height:100vh;
+    margin-top: -15vh;
+    }
+    .header-pic {
+        width: 100%;
+        height:100%;
+        object-fit: contain;
+    }
+    .intro {
+        margin: 0px 50px;
+        padding: 0px 20px;
+        .quote {
+            font-family: "Quote", sans-serif;
+            color: var(--font-light);
+            font-weight: 400;
+            margin-top: 30px;
+        }
+        .title {
+            font-family: "Title", sans-serif;
+        }
+        p {
+            padding: 0px 50px 30px 50px;
+        }
+    }
+}
+
