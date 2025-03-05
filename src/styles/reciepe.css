@@ -1,0 +1,22 @@
+.reciepe {
+    width: 100%;
+    height: 100vh;
+    img {
+        width: 100%;
+        aspect-ratio: 2/1;
+        object-fit: cover;
+    }
+    .description {
+        margin: 0px 80px;
+        display: flex;
+        justify-content:space-around;
+        gap: 20px;
+        ul {
+            flex:1 1 180px;
+            font-family: "Quote";
+        }
+        p {
+            flex:2 1 300px
+        }
+    }
+}

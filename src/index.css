@@ -1,16 +1,16 @@
 @font-face {
   font-family: "LogoFont";
-  src: url("../public/fonts/Think\ Memories.otf")
+  src: url("/fonts/Think\ Memories.otf")
 }
 
 @font-face {
   font-family: "Title";
-  src: url("../public/fonts/Bilgie\ Personal\ Use\ Only.ttf");
+  src: url("/fonts/Bilgie\ Personal\ Use\ Only.ttf");
 }
 
 @font-face {
   font-family: "Quote";
-  src:url("../public/fonts/Retro\ Floral.otf");
+  src:url("/fonts/Retro\ Floral.otf");
 }
 
 :root {
@@ -24,7 +24,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   --background-primary:#f5f2ed;
-  --background-secondary:#e3d9cc;
+  --background-secondary:rgb(227, 217, 204);
   --font-dark:#222121;
   --font-light:#c09667;
 
@@ -38,6 +38,14 @@
   }
   ul a {
     text-decoration: none;
+    color: var(--font-dark);
+  }
+  h1 {
+    font-family: "Quote", sans-serif;
+    color: var(--font-light);
+  }
+  h2, h3 {
+    font-family: "Title", sans-serif;
     color: var(--font-dark);
   }
   p {
