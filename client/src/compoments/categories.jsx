@@ -6,7 +6,7 @@ function Category({type}){
     console.log(keyword)
     return (
         <>
-            <h1>ALL {title}</h1>
+            <h1>ALL {keyword? `${keyword} reciepes`: title}</h1>
             <ul className="list">
                 <li><Item type={type} keyword={keyword? keyword:type}/></li>
                 <li><Item type={type}/></li>
@@ -14,12 +14,15 @@ function Category({type}){
                 <li><Item type={type}/></li>
                 <li><Item type={type}/></li>
             </ul>
+            <button className="create">
+                <img src="/imgs/create.svg" alt="" />
+            </button>
         </>
     )
 }
 
 
-function Item({type, keyword="no known", src="/imgs/dish.svg"}){
+export function Item({type, keyword="no known", src="/imgs/dish.svg"}){
     // insert child component depending on type and keyword
     console.log(type)
     return(

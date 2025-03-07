@@ -10,13 +10,25 @@
         margin: 0px 80px;
         display: flex;
         justify-content:space-around;
+        align-items: center;
         gap: 20px;
         ul {
             flex:1 1 180px;
             font-family: "Quote";
         }
+        li {
+            padding: 5px
+        }
         p {
             flex:2 1 300px
         }
     }
+}
+
+.create {
+  position:absolute;
+  top:0%;
+  right:5%;
+  border: none;
+  background-color: var(--background-primary);
 }

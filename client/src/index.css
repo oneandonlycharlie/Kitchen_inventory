@@ -1,6 +1,6 @@
 @font-face {
   font-family: "LogoFont";
-  src: url("/fonts/Think\ Memories.otf")
+  src: url("/fonts/Think\ Memories.otf");
 }
 
 @font-face {
@@ -16,7 +16,6 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,8 +24,8 @@
 
   --background-primary:#f5f2ed;
   --background-secondary:rgb(227, 217, 204);
-  --font-dark:#222121;
-  --font-light:#c09667;
+  --font-dark:rgb(34, 33, 33);
+  --font-light:rgb(192, 150, 103);
 
   background-color: var(--background-primary);
   color: var(--font-dark);

@@ -9,10 +9,10 @@ function App() {
       <Navigation />
       <main>
         <Outlet />
-      </main>
       <footer>
-
+          <p>footer</p>
       </footer>
+      </main>
     </>
   )
 }
@@ -23,13 +23,13 @@ function Navigation(){
     <nav>
       <div>
         <span className="logo">Charlie's Kitchen</span>
-        <p>- Cure with food -</p>
+        <span className='subtext'> - Cure with food -</span>
       </div>
       <ul className='menu'>
         <li><Link to="/" >HOME</Link></li>
-        <li><Link to="/" >CUISINES</Link></li>
-        <li><Link to="/" >RECEIPES</Link></li>
-        <li><Link to="/" >INGREDIENTS</Link></li>
+        <li><Link to="/reciepes" >RECEIPES</Link></li>
+        <li><Link to="/cuisines" >CUISINES</Link></li>
+        <li><Link to="/ingredients" >INGREDIENTS</Link></li>
       </ul>
     </nav>
   )
