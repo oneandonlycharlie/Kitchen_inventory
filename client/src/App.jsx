@@ -12,7 +12,6 @@ function App() {
         <Outlet />
       </main>
       <footer>
-          <p>footer</p>
       </footer>
     </>
   )
@@ -37,10 +36,10 @@ function Navigation(){
 }
 
 function CreateButton(){
-  const [isVisible, setFormVisibility] = useState(true)
+  const [isVisible, setFormVisibility] = useState(false)
 
   return(
-    <div>
+    <div className='pop-up'>
       <button className="create" onClick={()=>setFormVisibility(true)}>
           <img src="/imgs/create.svg" alt="" />
       </button>
@@ -51,26 +50,93 @@ function CreateButton(){
 
 function ReciepeForm({closeForm}){
     const [isNewCuisine, addNewCuisine] = useState(null)
+    const [reciepe, setReciepe] = useState({
+      title:"title",
+      ingredient_1:"1",
+      ingredient_2:"2",
+      ingredient_3:"3",
+      description:"lorem ipsum",
+      cuisine_type:"NA",
+      image:""
+    })
+    const handleSubmit =(e)=>{
+      e.preventDefault()    
+      fetch("/reciepe", {
+        method:"POST",
+        body: JSON.stringify(reciepe),
+        headers:{
+          "Content-Type": "application/json"
+        }
+      })
+      .then((response)=>{
+          if(response.ok) {
+            alert("New reciepe submitted!")
+            closeForm()
+            // add redirect to reciepe page.
+          } else {
+            alert ("Oops, something went wrong, try again")
+          }
+      })
+
+    }
+
+
     return(
-        <div className="form">
-            <button className='close' onClick={closeForm}>Close</button>
-            <form action="">
+        <div className="form edittab">
+            <button className='close' onClick={closeForm}>
+              <img src="/imgs/delete.svg" alt="" />
+            </button>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="">Upload photo</label>
                 <div>
-                  <label htmlFor="title">title</label>
-                  <input type="text" id='title' name='title'/>
+                  <label htmlFor="title">Title</label>
+                  <input type="text" id='title' 
+                         value={reciepe.title}
+                         onChange={(e)=>{setReciepe({
+                          ...reciepe,
+                          title: e.target.value
+                         })}}
+                  />
                 </div>
                 <div>
                   <label htmlFor="ingredient-1">Key Ingredient 1</label>
-                  <input type="text"  id='ingredient1' name='Ingredient_1'/>
+                  <input type="text"  id='ingredient1'  
+                        value={reciepe.ingredient_1}
+                        onChange={(e)=>{setReciepe({
+                          ...reciepe,
+                          ingredient_1: e.target.value
+                         })}}                 
+                  />
                 </div>
                 <div>
                   <label htmlFor="ingredient-2">Key Ingredient 2</label>
-                  <input type="text"  id='ingredient-2' name='Ingredient_2'/>
+                  <input type="text"  id='ingredient-2' 
+                        value={reciepe.ingredient_2}
+                        onChange={(e)=>{setReciepe({
+                          ...reciepe,
+                          ingredient_2: e.target.value
+                         })}}                   
+                  />
                 </div>
                 <div>
                   <label htmlFor="ingredient-3">Key Ingredient 3</label>
-                  <input type="text"  id='ingredient-3' name='Ingredient_3'/>
+                  <input type="text"  id='ingredient-3' 
+                        value={reciepe.ingredient_3}
+                        onChange={(e)=>{setReciepe({
+                          ...reciepe,
+                          ingredient_3: e.target.value
+                         })}} 
+                  />
+                </div>
+                <div>
+                  <label htmlFor="description">Description</label>
+                  <textarea name="" id="decription"
+                            value={reciepe.description}
+                            onChange={(e)=>{setReciepe({
+                              ...reciepe,
+                            description: e.target.value
+                          })}} 
+                  ></textarea>
                 </div>
                 <div>
                   <span>New Cuisine?</span>
@@ -79,7 +145,16 @@ function ReciepeForm({closeForm}){
                 </div>
                 { isNewCuisine == null? <></>:
                   isNewCuisine?
-                    <span>Name your cuisine</span>
+                    <>
+                      <label htmlFor="cuisine">Name your cuisine</label>
+                      <input type="text" id='cuisine'
+                            value={reciepe.cuisine_type}
+                            onChange={(e)=>{setReciepe({
+                              ...reciepe,
+                              cuisine_type: e.target.value
+                            })}}
+                      />
+                    </>
                   :
                     <div className="cuisine">
                       <span>Pick a category</span>
