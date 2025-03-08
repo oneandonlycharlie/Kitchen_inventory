@@ -1,7 +1,13 @@
-const { Client } = require("pg")
+const { Client, Pool } = require("pg")
 require("dotenv").config()
 
 const db = new Client({
+    user: process.env.USER,
+    database: process.env.db,
+    password: process.env.PWD
+})
+
+const pool = new Pool({    
     user: process.env.USER,
     database: process.env.db,
     password: process.env.PWD
@@ -27,3 +33,5 @@ async function dataInit(){
 }
 
 dataInit()
+
+module.exports = pool
