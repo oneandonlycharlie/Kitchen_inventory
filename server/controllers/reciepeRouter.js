@@ -10,4 +10,10 @@ reciepeRouter.post("/", (req,res)=>{
     res.json()
 })
 
+reciepeRouter.put("/", (req,res)=>{
+    console.log("request recieved to update reciepe");
+    console.log(req.body)
+    res.json()
+})
+
 module.exports = reciepeRouter
