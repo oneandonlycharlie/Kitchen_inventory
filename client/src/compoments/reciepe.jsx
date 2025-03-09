@@ -13,14 +13,15 @@ function Reciepe(){
     return(
         <>
             <div className="reciepe">
-                <img className="header" src="/imgs/cabornara.jpeg" alt=""/>
+                <img className="header" src={`http://localhost:3001`+ reciepe.image} alt=""/>
                 <h1>{reciepe.title} 
                     <button className="edit"
                             onClick={()=>setTabVisibility(true)}>
-                        <img src='/imgs/edit.svg' alt="" srcset="" />
+                        <img src='/imgs/edit.svg' alt="edit button" srcset="" />
                     </button></h1>
                 <div className="description">
-                    <ul> Key Ingredients
+                    <ul>
+                        <span>Key Ingredients</span>
                         <li>{reciepe.ingredient_1}</li>
                         <li>{reciepe.ingredient_2}</li>
                         <li>{reciepe.ingredient_3}</li>

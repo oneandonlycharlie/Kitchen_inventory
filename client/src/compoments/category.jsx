@@ -93,7 +93,7 @@ export function Item({item,type, keyword="no known", src="/imgs/dish.svg"}){
 
     return(
         <div className="card">
-            <span><Link to={`/${type}/${keyword}`}>{keyword}</Link></span>
+            <h3><Link to={`/${type}/${keyword}`}>{keyword}</Link></h3>
             <img src={src} alt="" />
             {type !== "ingredient" && 
                 <div className="delete">

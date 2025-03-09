@@ -21,6 +21,7 @@ function Ingredient({type="reciepe"}){
                     <li key={entry}><Item 
                         type={type}
                         keyword={entry.title}
+                        src={`http://localhost:3001`+ entry.image}
                     /></li>
                 ))}
             </ul>
