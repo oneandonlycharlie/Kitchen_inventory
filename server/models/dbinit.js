@@ -21,7 +21,8 @@ const createTable = `
         ingredient_2 VARCHAR(255),
         ingredient_3 VARCHAR(255),
         description VARCHAR(255),
-        cuisine_type VARCHAR(255)
+        cuisine_type VARCHAR(255),
+        image VARCHAR(255)
     )
 `
 

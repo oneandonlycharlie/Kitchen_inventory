@@ -1,6 +1,6 @@
 const pool = require("./dbinit")
 
-const addReciepe = async(data)=>{
+const addReciepe = async(entry)=>{
     const SQL = `
     INSERT INTO reciepes (
         title, 
@@ -8,19 +8,21 @@ const addReciepe = async(data)=>{
         ingredient_2, 
         ingredient_3,
         description,
-        cuisine_type
-    ) VALUES ($1, $2, $3, $4, $5, $6)
+        cuisine_type,
+        image
+    ) VALUES ($1, $2, $3, $4, $5, $6, $7)
     `
     await pool.connect();
     await pool.query(SQL, [
-        data.title, 
-        data.ingredient_1, 
-        data.ingredient_2, 
-        data.ingredient_3, 
-        data.description, 
-        data.cuisine_type
+        entry.title, 
+        entry.ingredient_1, 
+        entry.ingredient_2, 
+        entry.ingredient_3, 
+        entry.description, 
+        entry.cuisine_type,
+        entry.image
     ]);
-    console.log("New data logged")
+    console.log("New data logged, including image!")
 }
 
 const getAllReciepes = async()=>{

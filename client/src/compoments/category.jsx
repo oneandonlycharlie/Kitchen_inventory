@@ -51,6 +51,7 @@ function Category({type}){
                         type={type}
                         keyword={entry.title}
                         item={entry}
+                        src={`http://localhost:3001`+ entry.image}
                     /></li>
             ))}
             {type == "cuisine" && cuisineList.map((entry)=>(

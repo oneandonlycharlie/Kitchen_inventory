@@ -12,18 +12,20 @@ const storage = multer.diskStorage({
         cb(null, "uploads/")
     },
     filename: function(req, file, cb){
-        cb(null, file.originalname + path.extname(file.originalname))
+        cb(null, file.originalname)
     }
 })
 const upload = multer({storage:storage})
 
 // create new reciepe
-reciepeRouter.post("/", upload.single("image"), (req,res)=>{
+reciepeRouter.post("/", upload.single("image"),async (req,res)=>{
     console.log("post request recieved to create new reciepe");
     console.log(JSON.parse(req.body.data))
     console.log(req.file)
-    // const entry = JSON.parse(req.body.data)
-    // await db.addReciepe(entry) 
+    const entry = JSON.parse(req.body.data);
+    const imageURL = "/uploads/" + req.file.originalname
+    entry.image = imageURL;
+    await db.addReciepe(entry) 
     res.json();
 })
 

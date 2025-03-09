@@ -7,8 +7,12 @@ const reciepeRouter = require("./controllers/reciepeRouter.js")
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
+// allow access to image files
+app.use('/uploads', express.static('uploads'))
+
 // direct to reciepe controller
-app.use("/reciepe", reciepeRouter);
+app.use("/api", reciepeRouter);
+
 
 // use environment variables
 require("dotenv").config();
