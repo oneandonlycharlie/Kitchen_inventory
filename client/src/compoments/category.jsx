@@ -6,7 +6,7 @@ function Category({type}){
     // get keyword from user choice to filter items
     console.log(`keyword is ${keyword}`)
 
-    const data = useOutletContext()
+    const {data} = useOutletContext()
     console.log(data)
     let cuisineList = data.reduce((acc, entry)=>{
         console.log(entry.cuisine_type)
@@ -50,6 +50,7 @@ function Category({type}){
                     <Item 
                         type={type}
                         keyword={entry.title}
+                        item={entry}
                     /></li>
             ))}
             {type == "cuisine" && cuisineList.map((entry)=>(
@@ -57,6 +58,7 @@ function Category({type}){
                         <Item 
                             type={type}
                             keyword={entry}
+                            item={entry}
                     /></li>
             ))}
             {type == "ingredient" && ingredientList.map((entry)=>(
@@ -73,15 +75,29 @@ function Category({type}){
 
 
 
-export function Item({type, keyword="no known", src="/imgs/dish.svg"}){
-    // console.log(type)
+export function Item({item,type, keyword="no known", src="/imgs/dish.svg"}){
+    const {setCount} = useOutletContext()
+    function handleDelete(){
+        console.log(type)
+        console.log(item)
+        fetch("/reciepe",{
+            method: "DELETE",
+            headers:{
+                "Content-type":"application/json"
+            },
+            body:JSON.stringify({type,item})
+        });
+        setCount((prev)=>prev+1)
+    }
+
     return(
         <div className="card">
             <span><Link to={`/${type}/${keyword}`}>{keyword}</Link></span>
             <img src={src} alt="" />
-            <div className="delete">
-                <button><img src="/imgs/delete.svg" alt="" /></button>
-            </div>
+            {type !== "ingredient" && 
+                <div className="delete">
+                    <button onClick={handleDelete}><img src="/imgs/delete.svg" alt="" /></button>
+                </div>}
         </div>
     )
 }

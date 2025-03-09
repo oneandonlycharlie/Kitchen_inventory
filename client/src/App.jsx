@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { Link, Outlet} from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 function App() {
-  const [data, setData] = useState({})
 
-  useEffect(()=>{
+  const [data, setData] = useState({})
+  const [actionCount, setCount] = useState(0)
+
+  const fetchData = ()=>{
     fetch("/reciepe")
     .then((res)=> {
       console.log(res.status);
@@ -14,14 +16,18 @@ function App() {
     .then((data)=>{
       console.log(data);
       setData(data);
-    })
-  },[])
+    })};
+
+  useEffect(()=>{
+    fetchData();
+  },[actionCount])
+
   return (
     <>
       <Navigation />
       <main>
-        <CreateButton />
-        <Outlet context={data}/>
+        <CreateButton setCount={setCount}/>
+        <Outlet context={{data, setCount}}/>
       </main>
       <footer>
       </footer>
@@ -47,7 +53,7 @@ function Navigation(){
   )
 }
 
-function CreateButton(){
+function CreateButton({setCount}){
   const [isVisible, setFormVisibility] = useState(false)
 
   return(
@@ -55,7 +61,11 @@ function CreateButton(){
       <button className="create" onClick={()=>setFormVisibility(true)}>
           <img src="/imgs/create.svg" alt="" />
       </button>
-      {isVisible && <ReciepeForm closeForm={()=>{setFormVisibility(false)}}/>}
+      {isVisible 
+        && <ReciepeForm closeForm={()=>{
+            setFormVisibility(false);
+            setCount((prev)=>prev+1)
+          }}/>}
     </div>
   )
 }
