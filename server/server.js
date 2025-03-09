@@ -9,11 +9,6 @@ app.use(express.json())
 
 // direct to reciepe controller
 app.use("/reciepe", reciepeRouter);
-app.use("/", (req,res)=>{
-    console.log("recieved at main router")
-    console.log(req.body)
-    res.send()
-})
 
 // use environment variables
 require("dotenv").config();

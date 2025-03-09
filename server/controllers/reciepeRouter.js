@@ -24,4 +24,13 @@ reciepeRouter.put("/", (req,res)=>{
     res.json()
 })
 
+reciepeRouter.delete("/", async(req,res)=>{
+    console.log("request recieved to delete item/items");
+    const {type, item} = req.body
+    console.log(type)
+    console.log(item)
+    await db.deleteReciepe(type,item)
+    res.json()
+})
+
 module.exports = reciepeRouter

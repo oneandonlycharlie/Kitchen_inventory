@@ -33,7 +33,28 @@ const getAllReciepes = async()=>{
     return rows
 }
 
+// const updateReciepe = async()=>{
+
+// }
+
+const deleteReciepe = async(type,item)=>{
+    const category = type=="reciepe"? "id":"cuisine_type"
+    const name = item.id || item
+    console.log(category)
+    console.log(name)
+    console.log("processing deletion")
+    const SQL = `
+        DELETE FROM reciepes
+        WHERE ${category} = '${name}';
+    `
+    await pool.connect()
+    const { rows } = await pool.query(SQL)
+    console.log(rows)   
+    console.log("deletion successful")
+}
+
 module.exports = {
     addReciepe,
-    getAllReciepes
+    getAllReciepes,
+    deleteReciepe
 }
