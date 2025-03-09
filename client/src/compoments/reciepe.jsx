@@ -4,7 +4,7 @@ import "../styles/reciepe.css"
 
 function Reciepe(){
     const {title} = useParams()
-    const data = useOutletContext()
+    const {data} = useOutletContext()
     console.log(data)
     console.log(title)
     const reciepe = data.find((entry)=> entry.title == title)
@@ -40,7 +40,7 @@ function EditTab({reciepe,closeTab}){
     const [newReciepe, setReciepe] = useState(reciepe)
 
     const handleSubmit = ()=>{
-        fetch("/reciepe", {
+        fetch("/api", {
             method:"PUT",
             body: JSON.stringify(newReciepe),
             headers:{

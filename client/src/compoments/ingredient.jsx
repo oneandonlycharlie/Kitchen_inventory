@@ -4,7 +4,7 @@ import { Item } from "./category";
 
 function Ingredient({type="reciepe"}){
     const {keyword} = useParams()
-    const data = useOutletContext()
+    const {data} = useOutletContext()
     // add keyword based search
     const reciepeList = data.filter((entry)=>
         entry.ingredient_1 == keyword 

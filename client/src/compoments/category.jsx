@@ -80,7 +80,7 @@ export function Item({item,type, keyword="no known", src="/imgs/dish.svg"}){
     function handleDelete(){
         console.log(type)
         console.log(item)
-        fetch("/reciepe",{
+        fetch("/api",{
             method: "DELETE",
             headers:{
                 "Content-type":"application/json"
