@@ -35,9 +35,20 @@ const getAllReciepes = async()=>{
     return rows
 }
 
-// const updateReciepe = async()=>{
-
-// }
+const updateReciepe = async(entry)=>{
+    const SQL = `
+        UPDATE reciepes
+        SET title='${entry.title}', 
+            ingredient_1='${entry.ingredient_1}', 
+            ingredient_2='${entry.ingredient_2}', 
+            ingredient_3='${entry.ingredient_3}',
+            description='${entry.description}'
+        WHERE id = ${entry.id}
+    `
+    await pool.connect();
+    await pool.query(SQL);
+    console.log("reciepe updated")
+}
 
 const deleteReciepe = async(type,item)=>{
     const category = type=="reciepe"? "id":"cuisine_type"
@@ -58,5 +69,6 @@ const deleteReciepe = async(type,item)=>{
 module.exports = {
     addReciepe,
     getAllReciepes,
+    updateReciepe,
     deleteReciepe
 }

@@ -35,9 +35,10 @@ reciepeRouter.get("/", async(req,res)=>{
     res.json(result)
 })
 
-reciepeRouter.put("/",(req,res)=>{
+reciepeRouter.put("/", async(req,res)=>{
     console.log("request recieved to update reciepe");
     console.log(req.body)
+    await db.updateReciepe(req.body)
     res.json()
 })
 
