@@ -1,47 +1,48 @@
-import { useParams } from "react-router-dom"
+import { useParams, useOutletContext } from "react-router-dom"
 import { useState } from "react"
 import "../styles/reciepe.css"
 
 function Reciepe(){
     const {title} = useParams()
+    const data = useOutletContext()
+    console.log(data)
     console.log(title)
+    const reciepe = data.find((entry)=> entry.title == title)
+    console.log(reciepe)
     const [isVisible, setTabVisibility] = useState(false)
     return(
         <>
             <div className="reciepe">
                 <img className="header" src="/imgs/cabornara.jpeg" alt=""/>
-                <h1>{title} 
+                <h1>{reciepe.title} 
                     <button className="edit"
                             onClick={()=>setTabVisibility(true)}>
                         <img src='/imgs/edit.svg' alt="" srcset="" />
                     </button></h1>
                 <div className="description">
                     <ul> Key Ingredients
-                        <li>Opion</li>
-                        <li>Cream</li>
-                        <li>Pepper</li>
+                        <li>{reciepe.ingredient_1}</li>
+                        <li>{reciepe.ingredient_2}</li>
+                        <li>{reciepe.ingredient_3}</li>
                     </ul>
-                    <p className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p className="text">{reciepe.description}</p>
                 </div>
             </div>
-            {isVisible && <EditTab closeTab={()=>{setTabVisibility(false)}}/>}
+            {isVisible 
+                && <EditTab 
+                    reciepe={reciepe} 
+                    closeTab={()=>{setTabVisibility(false)}}/>}
         </>
     )
 }
 
-function EditTab({closeTab}){
-    const [reciepe, setReciepe] = useState({
-      title:"title",
-      ingredient_1:"1",
-      ingredient_2:"2",
-      ingredient_3:"3",
-      description:"lorem ipsum",
-    })
+function EditTab({reciepe,closeTab}){
+    const [newReciepe, setReciepe] = useState(reciepe)
 
     const handleSubmit = ()=>{
         fetch("/reciepe", {
             method:"PUT",
-            body: JSON.stringify(reciepe),
+            body: JSON.stringify(newReciepe),
             headers:{
                 "Content-Type": "application/json"
             }
@@ -65,9 +66,9 @@ function EditTab({closeTab}){
                     <img src="/imgs/delete.svg" alt="" srcset="" />
                 </button>                
                 <label className="title" htmlFor="">Title</label>
-                <input type="text" value={reciepe.title} 
+                <input type="text" value={newReciepe.title} 
                         onChange={(e)=>setReciepe({
-                            ...reciepe,
+                            ...newReciepe,
                             title: e.target.value
                         })}
                 />
@@ -75,33 +76,33 @@ function EditTab({closeTab}){
             <div className="description">
                 <ul> Key Ingredients
                     <li>
-                        <input type="text" value={reciepe.ingredient_1}
+                        <input type="text" value={newReciepe.ingredient_1}
                             onChange={(e)=>setReciepe({
-                                ...reciepe,
+                                ...newReciepe,
                                 ingredient_1: e.target.value
                         })}
                         />
                     </li>
                     <li>
-                        <input type="text" value={reciepe.ingredient_2} 
+                        <input type="text" value={newReciepe.ingredient_2} 
                              onChange={(e)=>setReciepe({
-                                ...reciepe,
+                                ...newReciepe,
                                 ingredient_2: e.target.value
                         })}                           
                         />
                     </li>
                     <li>
-                        <input type="text" value={reciepe.ingredient_3} 
+                        <input type="text" value={newReciepe.ingredient_3} 
                              onChange={(e)=>setReciepe({
-                                ...reciepe,
+                                ...newReciepe,
                                 ingredient_3: e.target.value
                         })}                           
                         />
                     </li>                    
                 </ul>
-                <textarea className="text" value={reciepe.description}
+                <textarea className="text" value={newReciepe.description}
                              onChange={(e)=>setReciepe({
-                                ...reciepe,
+                                ...newReciepe,
                                 description: e.target.value
                             })}                              
                 ></textarea>

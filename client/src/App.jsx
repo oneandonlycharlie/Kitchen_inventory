@@ -1,15 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet} from 'react-router-dom'
 
 function App() {
+  const [data, setData] = useState({})
 
+  useEffect(()=>{
+    fetch("/reciepe")
+    .then((res)=> {
+      console.log(res.status);
+      return res.json()
+    })
+    .then((data)=>{
+      console.log(data);
+      setData(data);
+    })
+  },[])
   return (
     <>
       <Navigation />
       <main>
         <CreateButton />
-        <Outlet />
+        <Outlet context={data}/>
       </main>
       <footer>
       </footer>
@@ -69,6 +81,7 @@ function ReciepeForm({closeForm}){
         }
       })
       .then((response)=>{
+          console.log(response)
           if(response.ok) {
             alert("New reciepe submitted!")
             closeForm()

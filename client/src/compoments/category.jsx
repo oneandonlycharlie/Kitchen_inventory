@@ -1,18 +1,71 @@
 import "../styles/category.css"
-import { Link, useParams } from "react-router-dom"
+import { Link, useOutletContext, useParams } from "react-router-dom"
 function Category({type}){
     const title = type.toUpperCase() + "S"
-    const {keyword} = useParams() // get keyword from user choice to filter items
-    console.log(keyword)
+    const {keyword} = useParams()
+    // get keyword from user choice to filter items
+    console.log(`keyword is ${keyword}`)
+
+    const data = useOutletContext()
+    console.log(data)
+    let cuisineList = data.reduce((acc, entry)=>{
+        console.log(entry.cuisine_type)
+        if (!acc.includes(entry.cuisine_type)){
+            acc.push(entry.cuisine_type)
+        }
+        return acc
+    },[])
+
+    let ingredientList = data.reduce((acc, entry)=>{
+        console.log(entry.ingredient_1)
+        if (!acc.includes(entry.ingredient_1)){
+            acc.push(entry.ingredient_1)
+        };
+        if (!acc.includes(entry.ingredient_2)){
+            acc.push(entry.ingredient_2)
+        };
+        if (!acc.includes(entry.ingredient_3)){
+            acc.push(entry.ingredient_3)
+        } 
+        return acc
+    },[])   
+
+    console.log(cuisineList)
+    console.log(ingredientList) 
+
+    if (keyword){
+        cuisineList = cuisineList.filter((entry)=> entry == keyword);
+        ingredientList = ingredientList.filter((entry)=> entry == keyword)
+    }
+
+    console.log(cuisineList)
+    console.log(ingredientList) 
+
     return (
         <>
-            <h1>ALL {keyword? `${keyword} reciepes`: title}</h1>
+            <h1>ALL {keyword? keyword : ""} {title}</h1>
             <ul className="list">
-                <li><Item type={type} keyword={keyword? keyword:type}/></li>
-                <li><Item type={type}/></li>
-                <li><Item type={type}/></li>
-                <li><Item type={type}/></li>
-                <li><Item type={type}/></li>
+            {type == "reciepe" && data.map((entry)=> (
+                <li key={entry.id}>
+                    <Item 
+                        type={type}
+                        keyword={entry.title}
+                    /></li>
+            ))}
+            {type == "cuisine" && cuisineList.map((entry)=>(
+                    <li key={entry}>
+                        <Item 
+                            type={type}
+                            keyword={entry}
+                    /></li>
+            ))}
+            {type == "ingredient" && ingredientList.map((entry)=>(
+                    <li key={entry}>
+                        <Item 
+                            type={type}
+                            keyword={entry}
+                    /></li>
+            ))}
             </ul>
         </>
     )
@@ -21,8 +74,7 @@ function Category({type}){
 
 
 export function Item({type, keyword="no known", src="/imgs/dish.svg"}){
-    // insert child component depending on type and keyword
-    console.log(type)
+    // console.log(type)
     return(
         <div className="card">
             <span><Link to={`/${type}/${keyword}`}>{keyword}</Link></span>

@@ -1,19 +1,28 @@
-import { useParams } from "react-router-dom";
+import { useParams, useOutletContext } from "react-router-dom";
 import "../styles/ingredient.css";
-import { Item } from "./categories";
+import { Item } from "./category";
 
-function Ingredient({type="reciepe", keyword=''}){
-    const {name} = useParams()
-    console.log(name)
+function Ingredient({type="reciepe"}){
+    const {keyword} = useParams()
+    const data = useOutletContext()
+    // add keyword based search
+    const reciepeList = data.filter((entry)=>
+        entry.ingredient_1 == keyword 
+        || entry.ingredient_2 == keyword 
+        || entry.ingredient_3 == keyword
+    )
+    console.log(keyword)
+    console.log(reciepeList)
     return(
         <div className="ingredient">
-            <p>This is all dishes you can make with <span>{name}.</span></p>
+            <p>This is all dishes you can make with <span>{keyword}.</span></p>
             <ul className="list">
-                <li><Item type={type} keyword={keyword? keyword:type}/></li>
-                <li><Item type={type}/></li>
-                <li><Item type={type}/></li>
-                <li><Item type={type}/></li>
-                <li><Item type={type}/></li>
+                {reciepeList.map((entry)=>(
+                    <li key={entry}><Item 
+                        type={type}
+                        keyword={entry.title}
+                    /></li>
+                ))}
             </ul>
         </div>
     )
