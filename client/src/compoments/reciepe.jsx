@@ -4,7 +4,7 @@ import "../styles/reciepe.css"
 
 function Reciepe(){
     const {title} = useParams()
-    const {data} = useOutletContext()
+    const {data, setCount} = useOutletContext()
     console.log(data)
     console.log(title)
     const reciepe = data.find((entry)=> entry.title == title)
@@ -31,7 +31,10 @@ function Reciepe(){
             {isVisible 
                 && <EditTab 
                     reciepe={reciepe} 
-                    closeTab={()=>{setTabVisibility(false)}}/>}
+                    closeTab={()=>{
+                        setTabVisibility(false);
+                        setCount((prev)=>prev+1)
+                    }}/>}
         </>
     )
 }
@@ -51,7 +54,6 @@ function EditTab({reciepe,closeTab}){
             if(response.ok) {
                 alert("Reciepe updated!")
                 closeTab()
-                // refresh redirect to reciepe page.
             } else {
                 alert ("Oops, something went wrong, try again")
             }
