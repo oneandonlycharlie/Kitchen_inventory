@@ -58,8 +58,16 @@ button.create {
 
 button.close {
     position: absolute;
-    top: 2%;
-    left:2%;
+    top: 3%;
+    left:3%;
+    border: none;
+    background-color: transparent;
+}
+
+button.submit {
+    position: absolute;
+    top: 3%;
+    right:3%;
     border: none;
     background-color: transparent;
 }
@@ -70,9 +78,35 @@ button.close {
     padding:20px;
     z-index:1;
     form {
+        margin: 30px 40px 10px 40px;
         height: 100%;
         display: flex;
         flex-direction: column;
-        font-size: 1rem;
+        font-size: 14px;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap:5px
+    }
+    div {
+        align-self: stretch;
+        margin-bottom: 3px;
+        display: flex;
+        justify-content: space-between;
+    }
+    input.file {
+        min-width:200px;
+        height:1.5rem;
+    }
+    label {
+        min-width: 120px;
+        margin-right: 20px;
+        text-align: left;
+    }
+    textarea {
+        height:5rem;
+        border-radius: 3px;
+    }
+    select {
+        width: 150px;
     }
 }

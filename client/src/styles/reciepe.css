@@ -54,17 +54,18 @@ div.edittab {
     right:5%;
     background-color: var(--background-primary);
     border-radius: 10px;
-    padding: 0px 20px;
     min-height: 300px;
     input {
-        width:70px;
-        height: 1.5rem;
+        min-width:60px;
+        height: 1.2rem;
     };
     margin: 30px 50px;
     box-shadow: 0px 0px 37px 2px rgba(0, 0, 0, 0.625);
+    span {
+        font-size: 16px;
+    }
     .title {
-        font-family: "Quote", sans-serif;
-        margin:20px 10px;
+        margin:50px 10px 20px 10px;
         input {
             min-width: 200px;
         }

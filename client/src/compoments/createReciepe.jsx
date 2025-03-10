@@ -21,12 +21,12 @@ function ReciepeForm({closeForm}){
     const fileInput = useRef(null)
     const [isNewCuisine, addNewCuisine] = useState(null)
     const [reciepe, setReciepe] = useState({
-      title:"title",
-      ingredient_1:"1",
-      ingredient_2:"2",
-      ingredient_3:"3",
-      description:"lorem ipsum",
-      cuisine_type:"NA",
+      title:"",
+      ingredient_1:"",
+      ingredient_2:"",
+      ingredient_3:"",
+      description:"",
+      cuisine_type:"",
     })
     const handleSubmit =(e)=>{
       e.preventDefault() 
@@ -63,8 +63,9 @@ function ReciepeForm({closeForm}){
               <img src="/imgs/delete.svg" alt="" />
             </button>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="">Upload photo</label>
-                <input type="file" ref={fileInput}  required/>
+              <div>
+                <input type="file" ref={fileInput} className="file" required/>
+              </div>
                 <div>
                   <label htmlFor="title">Title</label>
                   <input type="text" id='title' 
@@ -73,8 +74,8 @@ function ReciepeForm({closeForm}){
                           ...reciepe,
                           title: e.target.value
                          })}}
-                  />
-                </div>
+                  required/>
+                </div>              
                 <div>
                   <label htmlFor="ingredient-1">Key Ingredient 1</label>
                   <input type="text"  id='ingredient1'  
@@ -83,7 +84,7 @@ function ReciepeForm({closeForm}){
                           ...reciepe,
                           ingredient_1: e.target.value
                          })}}                 
-                  />
+                  required/>
                 </div>
                 <div>
                   <label htmlFor="ingredient-2">Key Ingredient 2</label>
@@ -93,7 +94,7 @@ function ReciepeForm({closeForm}){
                           ...reciepe,
                           ingredient_2: e.target.value
                          })}}                   
-                  />
+                  required/>
                 </div>
                 <div>
                   <label htmlFor="ingredient-3">Key Ingredient 3</label>
@@ -103,7 +104,7 @@ function ReciepeForm({closeForm}){
                           ...reciepe,
                           ingredient_3: e.target.value
                          })}} 
-                  />
+                  required/>
                 </div>
                 <div>
                   <label htmlFor="description">Description</label>
@@ -113,7 +114,7 @@ function ReciepeForm({closeForm}){
                               ...reciepe,
                             description: e.target.value
                           })}} 
-                  ></textarea>
+                  required></textarea>
                 </div>
                 <div>
                   <span>New Cuisine?</span>
@@ -123,6 +124,7 @@ function ReciepeForm({closeForm}){
                 { isNewCuisine == null? <></>:
                   isNewCuisine?
                     <>
+                    <div>
                       <label htmlFor="cuisine">Name your cuisine</label>
                       <input type="text" id='cuisine'
                             value={reciepe.cuisine_type}
@@ -131,25 +133,20 @@ function ReciepeForm({closeForm}){
                               cuisine_type: e.target.value
                             })}}
                       />
+                    </div>
                     </>
                   :
                     <div className="cuisine">
-                      <span>Pick a category</span>
-                      <div>
-                        <input type="radio" id="huey" name="cuisine" value="huey" checked />
-                        <label for="huey">Huey</label>
-                      </div>
-                      <div>
-                        <input type="radio" id="dewey" name="cuisine" value="dewey" />
-                        <label for="dewey">Dewey</label>
-                      </div>
-                      <div>
-                        <input type="radio" id="louie" name="cuisine" value="louie" />
-                        <label for="louie">Louie</label>
-                      </div>
+                      <label htmlFor="">Pick a category</label>
+                      <select id="fruit" name="fruit">
+                        <option value="apple">Apple</option>
+                        <option value="banana">Banana</option>
+                        <option value="cherry">Cherry</option>
+                        <option value="orange">Orange</option>
+                      </select>
                     </div>
                 }
-                <button type="submit">Upload</button>
+                <button className="submit" type="submit"><img src="/imgs/submit.svg" alt="" /></button>
             </form>
         </div>
     )

@@ -77,7 +77,8 @@ function EditTab({reciepe,closeTab}){
                 />
             </div>
             <div className="description">
-                <ul> Key Ingredients
+                <ul> 
+                    <span>Key Ingredients</span>
                     <li>
                         <input type="text" value={newReciepe.ingredient_1}
                             onChange={(e)=>setReciepe({
@@ -110,7 +111,7 @@ function EditTab({reciepe,closeTab}){
                             })}                              
                 ></textarea>
             </div>
-            <button className="submit" onClick={handleSubmit}>Submit</button>
+            <button className="submit" onClick={handleSubmit}><img src="/imgs/submit.svg" alt="" /></button>
         </div>
     )
 }
