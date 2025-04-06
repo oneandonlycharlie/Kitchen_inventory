@@ -4,13 +4,15 @@ require("dotenv").config()
 const db = new Client({
     user: process.env.USER,
     database: process.env.DB,
-    password: process.env.PWD
+    password: process.env.PWD,
+    host:process.env.HOST
 })
 
 const pool = new Pool({    
     user: process.env.USER,
     database: process.env.DB,
-    password: process.env.PWD
+    password: process.env.PWD,
+    host:process.env.HOST
 })
 
 const createTable = `
