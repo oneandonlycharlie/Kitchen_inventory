@@ -51,7 +51,7 @@ div.edittab {
     position: absolute;
     top:20%;
     left:5%;
-    right:5%;
+    width: 600px;
     background-color: var(--background-primary);
     border-radius: 10px;
     min-height: 300px;
