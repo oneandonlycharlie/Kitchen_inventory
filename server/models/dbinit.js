@@ -4,7 +4,7 @@ require("dotenv").config()
 const db = new Client({
     user: process.env.USER,
     database: process.env.DB,
-    password: process.env.PWD,
+    password: process.env.DB_PASSWORD,
     host:process.env.HOST,
     port:process.env.PORT
 })
@@ -12,7 +12,7 @@ const db = new Client({
 const pool = new Pool({    
     user: process.env.USER,
     database: process.env.DB,
-    password: process.env.PWD,
+    password: process.env.DB_PASSWORD,
     host:process.env.HOST,
     port:process.env.PORT
 })
@@ -32,7 +32,7 @@ const createTable = `
 
 async function dataInit(){
     console.log("Seeding...");
-    console.log("PWD:", process.env.PWD);
+    console.log("PWD:", process.env.DB_PASSWORD);
     await db.connect();
     await db.query(createTable);
     console.log("New table created in database")
