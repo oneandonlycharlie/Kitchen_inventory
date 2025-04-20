@@ -5,14 +5,16 @@ const db = new Client({
     user: process.env.USER,
     database: process.env.DB,
     password: process.env.PWD,
-    host:process.env.HOST
+    host:process.env.HOST,
+    port:process.env.PORT
 })
 
 const pool = new Pool({    
     user: process.env.USER,
     database: process.env.DB,
     password: process.env.PWD,
-    host:process.env.HOST
+    host:process.env.HOST,
+    port:process.env.PORT
 })
 
 const createTable = `
