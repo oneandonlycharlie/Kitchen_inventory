@@ -32,6 +32,7 @@ const createTable = `
 
 async function dataInit(){
     console.log("Seeding...");
+    console.log("PWD:", process.env.PWD);
     await db.connect();
     await db.query(createTable);
     console.log("New table created in database")
