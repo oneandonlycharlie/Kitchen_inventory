@@ -9,7 +9,7 @@ function App() {
   const [actionCount, setCount] = useState(0)
 
   const fetchData = ()=>{
-    fetch("/api")
+    fetch("https://kitchen-inventory-backend-production.up.railway.app/api")
     .then((res)=> {
       console.log(res.status);
       return res.json()
@@ -24,7 +24,6 @@ function App() {
   },[actionCount])
 
   console.log(data)
-
   return (
     <>
       <Navigation />

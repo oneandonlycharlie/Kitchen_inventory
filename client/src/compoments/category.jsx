@@ -51,7 +51,7 @@ function Category({type}){
                         type={type}
                         keyword={entry.title}
                         item={entry}
-                        src={`http://localhost:3001`+ entry.image}
+                        src={`https://kitchen-inventory-backend-production.up.railway.app`+ entry.image}
                     /></li>
             ))}
             {type == "cuisine" && cuisineList.map((entry)=>(
@@ -81,7 +81,7 @@ export function Item({item,type, keyword="no known", src="/imgs/dish.svg"}){
     function handleDelete(){
         console.log(type)
         console.log(item)
-        fetch("/api",{
+        fetch("https://kitchen-inventory-backend-production.up.railway.app/api",{
             method: "DELETE",
             headers:{
                 "Content-type":"application/json"

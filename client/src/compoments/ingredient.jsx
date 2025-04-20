@@ -21,7 +21,7 @@ function Ingredient({type="reciepe"}){
                     <li key={entry}><Item 
                         type={type}
                         keyword={entry.title}
-                        src={`http://localhost:3001`+ entry.image}
+                        src={`https://kitchen-inventory-backend-production.up.railway.app`+ entry.image}
                     /></li>
                 ))}
             </ul>

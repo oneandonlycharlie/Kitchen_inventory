@@ -13,7 +13,7 @@ function Reciepe(){
     return(
         <>
             <div className="reciepe">
-                <img className="header" src={`http://localhost:3001`+ reciepe.image} alt=""/>
+                <img className="header" src={`https://kitchen-inventory-backend-production.up.railway.app`+ reciepe.image} alt=""/>
                 <h1>{reciepe.title} 
                     <button className="edit"
                             onClick={()=>setTabVisibility(true)}>
@@ -44,7 +44,7 @@ function EditTab({reciepe,closeTab}){
     const [newReciepe, setReciepe] = useState(reciepe)
 
     const handleSubmit = ()=>{
-        fetch("/api", {
+        fetch("https://kitchen-inventory-backend-production.up.railway.app/api", {
             method:"PUT",
             body: JSON.stringify(newReciepe),
             headers:{

@@ -39,7 +39,7 @@ function ReciepeForm({closeForm}){
       const data = new FormData()
       data.append("image", file);
       data.append("data", JSON.stringify(reciepe));
-      fetch("/api", {
+      fetch("https://kitchen-inventory-backend-production.up.railway.app/api", {
         method:"POST",
         body: data
       })
