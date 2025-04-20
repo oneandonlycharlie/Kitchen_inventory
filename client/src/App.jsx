@@ -11,7 +11,6 @@ function App() {
   const fetchData = ()=>{
     fetch("https://kitchen-inventory-backend-production.up.railway.app/api")
     .then((res)=> {
-      console.log(res.status);
       return res.json()
     })
     .then((data)=>{
